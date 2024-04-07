@@ -2,6 +2,9 @@ package com.example.medicalinfoapp.common.preference.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.medicalinfoapp.common.preference.IPreferenceDataSource
+import com.example.medicalinfoapp.common.preference.PreferenceHelper
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,4 +33,8 @@ class PreferenceModule @Inject constructor() {
     ): SharedPreferences {
         return context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE)
     }
+
+    @Provides
+    @Singleton
+    fun getPreference(preferenceHelper: PreferenceHelper) : IPreferenceDataSource = preferenceHelper
 }
